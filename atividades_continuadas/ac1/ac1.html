@@ -1,11 +1,363 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ac1</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Avaliação Continuada 1</title>
+
+  <!-- MathJax para renderização matemática -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --secondary-color: #3498db;
+      --background-color: #f8f9fa;
+      --text-color: #333;
+      --border-color: #dee2e6;
+      --table-header-bg: #e9ecef;
+      --section-spacing: 2rem;
+      --content-spacing: 1.5rem;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: white;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    h1 {
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--secondary-color);
+      padding-bottom: 10px;
+      margin-bottom: var(--section-spacing);
+      text-align: center;
+    }
+
+    h2, h3, h4 {
+      color: var(--primary-color);
+      margin-top: var(--section-spacing);
+      margin-bottom: var(--content-spacing);
+    }
+
+    section {
+      margin-bottom: var(--section-spacing);
+      padding: 0 var(--content-spacing);
+    }
+
+    .question {
+      background-color: #fff;
+      border-left: 4px solid var(--secondary-color);
+      padding: var(--content-spacing);
+      margin-bottom: var(--section-spacing);
+      border-radius: 0 4px 4px 0;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: var(--content-spacing) 0;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: center;
+      border: 1px solid var(--border-color);
+    }
+
+    th {
+      background-color: var(--table-header-bg);
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f8f9fa;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    hr {
+      border: none;
+      height: 2px;
+      background-color: var(--secondary-color);
+      margin: var(--section-spacing) 0;
+      opacity: 0.3;
+    }
+
+    ul {
+      list-style-type: disc;
+      margin-left: 20px;
+      padding-left: 20px;
+      margin-bottom: var(--content-spacing);
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: var(--content-spacing);
+    }
+
+    strong {
+      color: var(--primary-color);
+    }
+
+    .math-display {
+      background-color: #f8f9fa;
+      padding: 15px;
+      border-radius: 5px;
+      margin: var(--content-spacing) 0;
+      overflow-x: auto;
+    }
+
+    .pseudocode {
+      background-color: #f8f9fa;
+      padding: var(--content-spacing);
+      border-radius: 5px;
+      margin: var(--content-spacing) 0;
+      font-family: monospace;
+    }
+
+    .analysis {
+      background-color: #f8f9fa;
+      padding: var(--content-spacing);
+      border-radius: 5px;
+      margin: var(--content-spacing) 0;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 15px;
+      }
+      
+      th, td {
+        padding: 8px 10px;
+      }
+
+      :root {
+        --section-spacing: 1.5rem;
+        --content-spacing: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    
+  <div class="container">
+    <h1>Avaliação Continuada 1</h1>
+
+    <section>
+      <div class="question">
+        <h2>Questão 1</h2>
+        <p><strong>Enunciado:</strong> Considere a ordenação de \( n \) números armazenados no vetor \( A = \langle a_1, a_2, \dots, a_n \rangle \), localizando primeiro o menor elemento de \( A \) e permutando esse elemento com o elemento contido em \( A[1] \). Em seguida, determine o segundo menor elemento de \( A \) e permute-o com \( A[2] \). Continue dessa maneira para os primeiros \( n - 1 \) elementos de \( A \). Escreva o pseudocódigo para esse algoritmo, conhecido como <strong>ordenação por seleção</strong>. Forneça os tempos de execução \( T(n) \) do melhor caso e do pior caso da ordenação por seleção. O cálculo de \( T(n) \) deve ser feito de modo formal, como foi realizado em sala para a ordenação por inserção.</p>
+
+        <div class="pseudocode">
+          <h3>Pseudocódigo:</h3>
+          <p>\( \text{Sort}(A, n) \):</p>
+          <ol>
+              <li>Para \( i \) de \( 1 \) até \( n \) faça:</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;\( menor \gets A[i] \)</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;\( indiceMenor \gets i \)</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;Para \( j \) de \( i + 1 \) até \( n \) faça:</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Se \( A[j] \leq menor \) então:</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\( menor \gets A[j] \)</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\( indiceMenor \gets j \)</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;\( intermediario \gets A[i] \)</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;\( A[i] \gets A[indiceMenor] \)</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;\( A[indiceMenor] \gets intermediario \)</li>
+          </ol>
+        </div>
+
+        <div class="analysis">
+          <h3>Análise de Complexidade:</h3>
+          <p>O tempo de execução \( T(n) \) do algoritmo depende principalmente da linha do <code>if</code> dentro do laço interno, que representa as comparações entre os elementos:</p>
+          
+          <h4>Quantas Comparações São Feitas?</h4>
+          <p>A cada iteração do laço externo, o laço interno faz comparações entre os elementos. O número de comparações é dado por:</p>
+          <p>$$ T_{\text{comparações}}(n) = \sum_{i=1}^{n-1} (n - i) $$</p>
+          <p>Este somatório representa a soma do número de comparações realizadas pelo laço interno em cada iteração do laço externo. Vamos simplificar a expressão do somatório:</p>
+          <p>$$ T_{\text{comparações}}(n) = (n-1) + (n-2) + (n-3) + \dots + 1 $$</p>
+          <p>Este somatório pode ser reescrito como:</p>
+          <p>$$ T_{\text{comparações}}(n) = \sum_{i=1}^{n-1} i = \frac{(n-1)n}{2} $$</p>
+          <p>Ou:</p>
+          <p>$$ T_{\text{comparações}}(n) = \sum_{i=1}^{n-1} i = \frac{n^2}{2} - n $$</p>
+          <p>Ou seja, o número total de comparações realizadas é \( \frac{n^2}{2} - n \), que tem uma complexidade de tempo de \( O(n^2) \).</p>
+          <h3>Tempo de Execução no Pior Caso:</h3>
+          <p>No pior caso, o algoritmo faz o maior número de comparações e permutações, também resultando em um tempo de execução de \( O(n^2) \).</p>
+          <h3>Tempo de Execução no Melhor Caso:</h3>
+          <p>No melhor caso, o algoritmo ainda realiza todas as comparações, mas o número de permutações é menor. Assim, o número de comparações continua sendo o mesmo, ou seja, \( O(n^2) \).</p>
+          <h3>Conclusão:</h3>
+          <p>O algoritmo de ordenação por seleção tem uma complexidade de tempo \( O(n^2) \) tanto no melhor quanto no pior caso, já que o número de comparações realizadas não depende da ordem dos elementos no vetor.</p>
+          <p>Desse modo, o tempo de execução do algoritmo é sempre dado pela função:</p>
+          <p>$$ T(n) = \frac{n^2}{2} - n $$</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="question">
+        <h2>Questão 2</h2>
+        <div class="item">
+          <h3>Item 1</h3>
+          <p><strong>Enunciado:</strong> É verdade que \( 10n^2 + 200n +\frac{500}{n} = O(n^2) \)?</p>
+          <div class="answer">
+            <p><strong>Resposta:</strong></p>
+            <p>Seja:</p>
+            <p>$$f(n) = 10n^2 + 200n +\frac{500}{n}$$</p>
+            <p>Queremos demonstrar que \( f(n) = O(n^2) \), ou seja, que existem constantes \( c > 0 \) e \( n_0 \in \mathbb{N} \) tais que, para todo \( n \geq n_0 \):</p>
+            <p>$$f(n) \leq cn^2$$</p>
+            <p>Para todo \( n \geq 1 \), temos:</p>
+            <ul>
+              <li>\( 10n^2 \leq 10n^2 \)</li>
+              <li>\( 200n \leq 200n^2 \) pois \( n \leq n^2 \)</li>
+              <li>\( \frac{500}{n} \leq 500n^2 \) pois \( \frac{1}{n} \leq n^2 \) para \( n \geq 1 \)</li>
+            </ul>
+            <p>Somando:</p>
+            <p>$$f(n) \leq 10n^2 + 200n^2 + 500n^2 = 710n^2$$</p>
+            <p>Logo, existe \( c = 710 \) e \( n_0 = 1 \) tal que \( f(n) \leq cn^2 \) para todo \( n \geq n_0 \). Portanto:</p>
+            <p>$$f(n) = O(n^2)$$</p>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="item">
+          <h3>Item 2</h3>
+          <p><strong>Enunciado:</strong> É verdade que \( n^2 - 200n - 300 = O(n) \)?</p>
+          <div class="answer">
+            <p><strong>Resposta:</strong></p>
+            <p>Seja:</p>
+            <p>$$f(n) = n^2 - 200n - 300$$</p>
+            <p>Queremos demonstrar que \( f(n) = O(n) \), ou seja, que existem constantes \( c > 0 \) e \( n_0 \in \mathbb{N} \) tais que, para todo \( n \geq n_0 \):</p>
+            <p>$$f(n) \leq cn$$</p>
+            <p>Vamos, inicialmente, assumir que essa inequação é verdade:</p>
+            <p>$$f(n) \leq cn$$</p>
+            <p>$$n^2 - 200n - 300 \leq cn$$</p>
+            <p>Simplificando:</p>
+            <p>$$n - 200 - \frac{300}{n} \leq c$$</p>
+            <p>$$n - 200 - \frac{300}{n} \leq c$$</p>
+            <p>$$n \leq c + 200 + \frac{300}{n}$$</p>
+            <p>Isso contradiz a definição de \( O(n) \), pois, \(n\) não pode ser limitado, por um valor constante.</p>
+            <p>Logo, pode se afirmar que: </p>
+            <p>$$f(n) \notin O(n)$$</p>
+            <p>Portanto, a afirmação é falsa. \( n^2 - 200n - 300 \) não é \( O(n) \). Pois, quando tentamos aplicar a definição de \( O(n) \) chegamos em um absurdo.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="question">
+        <h2>Questão 3</h2>
+        <div class="item">
+          <h3>Item 1</h3>
+          <p><strong>Enunciado:</strong> Prove que \( (n + 1)^2 = O(n^2) \)</p>
+          <div class="answer">
+            <p><strong>Resposta:</strong></p>
+            <p>Seja:</p>
+            <p>$$f(n) = (n + 1)^2 = n^2 + 2n + 1$$</p>
+            <p>Queremos demonstrar que \( f(n) = O(n^2) \), ou seja, que existem constantes \( c > 0 \) e \( n_0 \in \mathbb{N} \) tais que:</p>
+            <p>$$f(n) \leq cn^2$$</p>
+            <p>Para \( n \geq 1 \), temos:</p>
+            <ul>
+              <li>\( n^2 \leq n^2 \)</li>
+              <li>\( 2n \leq 2n^2 \), pois \( n \leq n^2 \)</li>
+              <li>\( 1 \leq n^2 \), pois \( n \geq 1 \)</li>
+            </ul>
+            <p>Logo:</p>
+            <p>$$f(n) \leq n^2 + 2n^2 + n^2 = 4n^2$$</p>
+            <p>Logo, existe \( c = 4 \) e \( n_0 = 1 \) tal que \( f(n) \leq cn^2 \) para todo \( n \geq n_0 \).</p>
+            <p>Portanto:</p>
+            <p>$$f(n) = O(n^2)$$</p>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="item">
+          <h3>Item 2</h3>
+          <p><strong>Enunciado:</strong> Seja \( C(n, k) \) o número de combinações de \( n \) objetos tomados \( k \) a \( k \). Mostre que \( C(n, 2) = O(n^2) \)</p>
+          <div class="answer">
+            <p><strong>Resposta:</strong></p>
+            <p>Seja:</p>
+            <p>$$f(n) = C(n, 2) = \frac{n(n - 1)}{2}$$</p>
+            <p>Queremos demonstrar que \( f(n) = O(n^2) \), ou seja, que existem constantes \( c > 0 \) e \( n_0 \in \mathbb{N} \) tais que:</p>
+            <p>$$f(n) \leq cn^2$$</p>
+            <p>Sabemos que:</p>
+            <p>$$f(n) = \frac{n^2 - n}{2} = \frac{n^2}{2} - \frac{n}{2}$$</p>
+            <p>Para \( c = \frac{1}{2} \). Verificamos se a desigualdade da definição é satisfeita::</p>
+            <p>$$\frac{n^2}{2} - \frac{n}{2} \leq \frac{1}{2} n^2 $$</p>
+            <p>Expandindo:</p>
+            <p>$$\frac{1}{2}n^2 - \frac{n}{2} \leq \frac{1}{2} n^2 $$</p>
+            <p>Subtraindo \(\frac{1}{2}n^2 \), dos dois lados da inequação, temos:</p>
+            <p>$$ - \frac{n}{2} \leq 0 $$</p>
+            <p>Resolvendo:</p>
+            <p>$$ n \geq 0 $$</p>
+            <p>Logo, existe \( c = \frac{1}{2} \) e \( n_0 = 1 \) tal que, para todo \( n > n_0 \):</p>
+            <p>$$f(n) \leq c \cdot n^2$$</p>
+            <p>Portanto,</p>
+            <p>$$f(n) = O(n^2)$$</p>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="item">
+          <h3>Item 3</h3>
+          <p><strong>Enunciado:</strong> Prove que \( \log((100n^3 + 200n + 300)^2) = O(\log n) \)</p>
+          <div class="answer">
+            <p><strong>Resposta:</strong></p>
+            <p>Seja:</p>
+            <p>$$f(n) = \log((100n^3 + 200n + 300)^2)$$</p>
+            <p>Queremos demonstrar que \( f(n) = O(\log n) \), ou seja, que existem constantes \( c > 0 \) e \( n_0 \in \mathbb{N} \) tais que:</p>
+            <p>$$f(n) \leq c \log n$$</p>
+            <p>Como \( \log \) é uma função crescente, pode-se afirmar que, para \(n \geq 1\):</p>
+            <ul>
+              <li> \(\log((100n^3 + 200n + 300)^2) \leq \log((100n^3 + 200n^3 + 300n^3)^2)\)  </li>
+              <li> Pois, para \(n \geq 1\). Temos que: \(200n < 200n^3\), e \(300 < 300^3\)</li>
+            </ul>
+            <p>Simplificando, Temos:</p>
+            <p>$$ f(n) =  \log((100n^3 + 200n^3 + 300n^3)^2)$$</p>
+            <p>$$ \leq  2\log(600n^3)$$</p>
+            <p>$$ \leq  2(\log(600) + \log(n^3))$$</p>
+            <p>$$ \leq  2(\log(600) + \log(n^3))$$</p>
+            <p>$$ \leq  2(\log(600) + 3\log(n))$$</p>
+            <p>$$ \leq  2\log(600) + 6\log(n)$$</p>
+            <p>Como o termo \( 2\log(600)\) é constante, existe um valor de c, que seja suficientemente grande, para afirmar que:</p>
+            <p>$$f(n) \leq c \log n$$</p>
+            <p>Para descobrir esse valor, vou dizer que para \( n \geq 600 \), temos:</p>
+            <ul>
+              <li>\(2 \log(600) \leq 2 \log n\)</li>
+            </ul>
+            <p>Assim, posso dizer, que:</p>
+            <p>$$f(n) \leq 2 \log n + 6 \log n$$</p>
+            <p>$$ \leq 8 \log n$$</p>
+            <p>Desse modo, existe \( c = 8 \) e \( n_0 = 600 \) tal que, para todo \( n > n_0 \):</p>
+            <p>$$f(n) \leq c \cdot \log n$$</p>
+            <p>Logo,</p>
+            <p>$$f(n) = O(\log n)$$</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </body>
 </html>
