@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Avaliação Continuada 2</title>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --secondary-color: #3498db;
+      --background-color: #f8f9fa;
+      --text-color: #333;
+      --border-color: #dee2e6;
+      --table-header-bg: #e9ecef;
+      --section-spacing: 2rem;
+      --content-spacing: 1.5rem;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: white;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    h1 {
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--secondary-color);
+      padding-bottom: 10px;
+      margin-bottom: var(--section-spacing);
+      text-align: center;
+    }
+
+    h2, h3, h4 {
+      color: var(--primary-color);
+      margin-top: var(--section-spacing);
+      margin-bottom: var(--content-spacing);
+    }
+
+    section {
+      margin-bottom: var(--section-spacing);
+      padding: 0 var(--content-spacing);
+    }
+
+    .question {
+      background-color: #fff;
+      border-left: 4px solid var(--secondary-color);
+      padding: var(--content-spacing);
+      margin-bottom: var(--section-spacing);
+      border-radius: 0 4px 4px 0;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: var(--content-spacing) 0;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: center;
+      border: 1px solid var(--border-color);
+    }
+
+    th {
+      background-color: var(--table-header-bg);
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f8f9fa;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    hr {
+      border: none;
+      height: 2px;
+      background-color: var(--secondary-color);
+      margin: var(--section-spacing) 0;
+      opacity: 0.3;
+    }
+
+    ul {
+      list-style-type: disc;
+      margin-left: 20px;
+      padding-left: 20px;
+      margin-bottom: var(--content-spacing);
+    }
+
+    li {
+      margin-bottom: 8px;
+      
+    }
+
+    .itens li::marker {
+      color: var(--primary-color);         
+      font-size: 24px;    
+      font-weight: bold;  
+    }
+
+    .pseudocode li::marker{
+      all: revert;
+    }
+
+    p {
+      margin-bottom: var(--content-spacing);
+    }
+
+    strong {
+      color: var(--primary-color);
+    }
+
+    .math-display {
+      background-color: #f8f9fa;
+      padding: 15px;
+      border-radius: 5px;
+      margin: var(--content-spacing) 0;
+      overflow-x: auto;
+    }
+
+    .pseudocode {
+      background-color: #f8f9fa;
+      padding: var(--content-spacing);
+      border-radius: 5px;
+      margin: var(--content-spacing) 0;
+      font-family: monospace;
+    }
+
+    .analysis {
+      background-color: #f8f9fa;
+      padding: var(--content-spacing);
+      border-radius: 5px;
+      margin: var(--content-spacing) 0;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 15px;
+      }
+      
+      th, td {
+        padding: 8px 10px;
+      }
+
+      :root {
+        --section-spacing: 1.5rem;
+        --content-spacing: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Avaliação Continuada 2</h1>
+
+    <section>
+      <div class="question">
+        <h2>Questão 1</h2>
+        <p><strong>Enunciado:</strong> Um invariante de laço é uma relação entre os valores das variáveis que vale no início de cada iteração do processo iterativo. Os invariantes explicam o funcionamento do processo iterativo e permitem provar, por indução, que ele tem o efeito desejado. Considere, por exemplo, a função Max descrita abaixo.</p>
+
+        <div class="pseudocode">
+          <h3>Algoritmo: Max(A, n)</h3>
+          <p>Entrada: um vetor A com n inteiros, cujos índice vão de 1 a n</p>
+          <p>Saída: o valor de um elemento máximo do vetor A[1..n]</p>
+          <ol>
+            <li>maximum = A[1]</li>
+            <li>for j = 2 to n</li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;if maximum < A[j]</li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;maximum = A[j]</li>
+            <li>return maximum</li>
+          </ol>
+        </div>
+
+        <p>O processo iterativo controlado pelo laço for tem o seguinte invariante:</p>
+        <p>"No início de cada iteração do laço for (imediatamente antes da comparação de j com n), a variável maximum guarda o valor de um elemento máximo do subvetor A[1 ... j-1]".</p>
+
+        <p>Responda:</p>
+        <ol class="itens">
+          <li>Mostre que o invariante da função Max vale no início da primeira iteração do laço for.</li>
+          <li>Suponha que o invariante vale no início de uma iteração qualquer e mostre que ele vale no início da iteração seguinte.</li>
+          <li>Suponha que o invariante vale no início da última iteração e deduza daí que a função devolve um elemento máximo do vetor A[1...n].</li>
+        </ol>
+
+        <div class="answer">
+          <p><strong>Resposta:</strong></p>
+          
+          <p>Para mostrar que o algoritmo está correto, vamos usar o invâriante de laço, dado pelo enunciado:</p>
+          
+          <p><em>"No início de cada iteração do laço <code>for</code> (imediatamente antes da comparação de \( j \) com \( n \)), a variável <code>maximum</code> guarda o valor de um elemento máximo do subvetor \( A[1\,..\,j-1] \)." </em></p>
+        
+          <p>Inicialmente, Vamos provar esse invariânte de laço em três etapas: Caso base, Passo indutivo e conclusão.</p>
+        
+          <p><strong>Caso Base (\( j = 2 \)):</strong></p>
+          <p>No início da primeira iteração do laço, temos \( j = 2 \).</p>
+          <p>O valor de <code>maximum</code> foi atribuído como \( A[1] \), na linha 1.</p>
+          <p>O subvetor considerado é \( A[1\,..\,j-1] = A[1\,..\,1] \), que contém apenas o elemento \( A[1] \).</p>
+          <p>Podemos afirmar que, o maior elemento de um conjunto com apenas um elemento é ele mesmo.</p>
+          <p>Logo, \( \text{maximum} = A[1] \) é o maior elemento de \( A[1\,..\,1] \).</p>
+          <p>Portanto, o invariante é verdadeiro no início da primeira iteração.</p>
+        
+          <p><strong>Passo indutivo (onde \( j \) é o indice de uma iteração qualquer):</strong></p>
+          <p>Assumamos que o invariante é verdadeiro no início de uma iteração qualquer \( j \), ou seja, que <code>maximum</code> guarda o valor máximo do subvetor \( A[1\,..\,j-1] \).</p>
+          
+          <p><strong>Conclusão (onde \( j + 1 \) é o indice da proxima iteração):</strong></p>
+          
+          <p>Durante a iteração \( j \), o algoritmo compara <code>maximum</code> com \( A[j] \):</p>
+          <ul>
+            <li>Se \( A[j] > \text{maximum} \), então atualizamos \( \text{maximum} \leftarrow A[j] \).</li>
+            <li>Caso contrário, \( \text{maximum} \) permanece inalterado.</li>
+          </ul>
+          <p>Em ambos os casos, ao final da iteração, \( \text{maximum} \) guarda o maior valor de \( A[1\,..\,j] \).</p>
+          <p>Portanto, o invariante continua válido no início da próxima iteração (\( j + 1 \)).</p>
+        
+          <p><strong>Agora, vamos provar que o algoritmo está correto:</strong></p>
+          <p>Para isso, temos que provar que:</p>
+          <p>"No fim da execução, ele devolve o valor máximo do vetor \( A \)"</p>
+
+          <p> O for quebra suas iterações, quando \( j = n \). Então vamos analizar a iteração \( j = n + 1 \), para obtermos o resultado do fim da última iteração válida. </p>
+          <p> Pela invariante que provamos acima, temos que: no inicio da iteração \( n + 1 \), a variável <code>maximum</code> guarda o valor do elemento máximo do subvetor \( A[1,...,n] \).</p>
+          <p> Após o fim do laço, não é realizada nenhuma operação, apenas o retorno da variável <code>maximum</code>. </p>
+          <p> Portanto, assim, provamos que o algortimo é correto.</p>
+
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="question">
+        <h2>Questão 2</h2>
+        <p><strong>Enunciado:</strong> [CORMEN et al.] Questão 2-2 (Corretude do Bubblesort). Bubblesort é um algoritmo de ordenação popular, mas ineficiente. Ele funciona fazendo varreduras pelo vetor, trocando repetidamente elementos adjacentes que estiverem fora de ordem.</p>
+
+        <div class="pseudocode">
+          <h3>Algoritmo: BubbleSort(A)</h3>
+          <p>Entrada: um vetor de inteiros A</p>
+          <p>Saída: vetor A ordenado em ordem crescente</p>
+          <ol>
+            <li>for i = 1 to A.length-1</li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;for j = A.length downto i+1</li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if A[j] < A[j-1]</li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exchange A[j] with A[j-1]</li>
+          </ol>
+        </div>
+
+        <p>Responda os itens abaixo:</p>
+        <ol class="itens">
+          <li>
+            <p>Seja A' o vetor resultante após a aplicação do algoritmo BubbleSort(A). Para provar que o BubbleSort está correto, nós precisamos provar que ele termina e que:</p>
+            <p>$$A'[1] \leq A'[2] \leq \cdots \leq A'[n]$$</p>
+            <p>onde \(n = A.length\). A fim de mostrar que BubbleSort de fato ordena o array dado como entrada, o que mais precisamos provar?</p>
+
+            <div class="answer">
+              <p><strong>Resposta:</strong></p>
+              <p>Para garantir a correção do BubbleSort, é necessário provar:</p>
+              <ul>
+                <li>que o algoritmo termina;</li>
+                <li>que o vetor final está em ordem crescente;</li>
+                <li>que o vetor final é uma permutação da entrada.</li>
+              </ul>
+            </div>
+          </li>
+
+          <li>
+            <p>Enuncie com precisão um invariante de laço para o laço for das linhas 2 a 4 e prove que esse invariante de laço é válido. Sua prova deve usar a estrutura da prova do invariante de laço em 3 etapas que foi apresentada em sala de aula (Caso Base, Passo Indutivo e Término).</p>
+            
+            <div class="answer">
+              <p><strong>Resposta:</strong></p>
+              
+              <p>Seja \( n = A.length \), Vamos considerar o seguinte invâriante de laço:</p>
+              
+              <p><em>"No início de cada iteração do laço <code>for</code> interno (indice \( j \)), o elemento na posição \( j \), do array principal \( A \) é menor ou igual a todos os elementos do subarray \( A[j+1\,...\,n] \)." </em></p>
+            
+              <p>Vamos provar esse invariante de laço em três etapas: Caso base, passo indutivo e conclusão.</p>
+            
+              <p><strong>Caso base, (\( j = n \)):</strong></p>
+              <p>No início da primeira iteração do laço, temos \( j = n \).</p>
+              <p>O subarray considerado é \( A[j + 1\,...\,n] = A[n + 1\,...\,n] \), que é um array vazio.</p>
+              <p>Logo, afirmaremos que o elemento \( j \) do array \( A \), é menor ou igual a todos os elementos desse subarray vazio, pois, por vacuidade, pode-se concluir qualquer coisa de um array vazio.</p>
+              <p>Portanto, o invariante é verdadeiro no início da primeira iteração.</p>
+            
+              <p><strong>Passo indutivo, (onde \( j \) é o indice de uma iteração qualquer):</strong></p>
+              <p>Assumamos  que o invariante é verdadeiro no início de uma iteração qualquer \( j \), ou seja, que o elemento \( j \) do array \( A \), é menor ou igual a todos os elementos do subarray \( A[j+1\,...\,n] \).</p>
+
+              <p><strong>Conclusão,  (onde \( j - 1 \) é o indice da próxima iteração):</strong></p>
+
+              <p>Durante a iteração \( j \), o algoritmo compara \( A[j] \) com \( A[j - 1] \):</p>
+              <ul>
+                <li>Se \( A[j] < A[j - 1] \), então trocamos os valores de \( A[j] \) e \( A[j - 1] \).</li>
+                <li>Caso contrário, o vetor \( A \) permanece inalterado.</li>
+              </ul>
+              <p>Em ambos os casos, ao final da iteração, o elemento \( j - 1 \) do array \( A \), é menor ou igual a todos os elementos do subarray \( A[j\,...\,n] \), já que o menor elemento "desce" para frente na lista.</p>
+              <p> Podemos observar, que essa afirmação é exatamente o lugar que deveriamos chegar, para provar que o invariante é válido na proxima iteração, com indice \( j -1 \). </p>
+              <p>Portanto, o invariante continua válido no início da próxima iteração.</p>       
+            </div>
+          </li>
+
+          <li>
+            <p>Usando a condição de término do invariante de laço demonstrado na parte (B) acima, enuncie um invariante de laço para o laço for das linhas 1 a 4 que permita provar a desigualdade (2.3). Sua prova deve empregar a estrutura da prova do invariante de laço apresentada em sala de aula.</p>
+           
+            <div class="answer">
+              <p><strong>Resposta:</strong></p>
+              
+              <p>Vamos considerar o seguinte invariante de laço:</p>
+              
+              <p><em>"No início de cada iteração do laço <code>for</code> externo (indice \( i \)), o subarray \( A[1\,...\,i-1] \), está ordenado em ordem crescente." </em></p>
+            
+              <p>Vamos provar esse invariante de laço em três etapas: Caso base, passo indutivo e conclusão.</p>
+            
+              <p><strong>Caso base, (\( i = 1 \)):</strong></p>
+              <p>No início da primeira iteração do laço, temos \( i = 1 \).</p>
+              <p>O subarray considerado é \( A[1\,...\,i - 1] = A[1\,...\,0] \), que é um array vazio.</p>
+              <p>Logo, por vacuidade, afirmaremos que o subarray está ordenado.</p>
+              <p>Portanto, o invariante é verdadeiro no início da primeira iteração.</p>
+            
+
+              <p><strong>Passo indutivo, (onde \( i \) é o indice de uma iteração qualquer):</strong></p>
+              <p>Assumamos  que o invariante é verdadeiro no início de uma iteração qualquer \( i \), ou seja, que no início da iteração de indice \( i \), o subarray \( A[1\,...\,i-1] \), está ordenado em ordem crescente.</p>
+
+              <p><strong>Conclusão, (onde \( i + 1 \) é o indice da próxima iteração):</strong></p>
+              <p>Seja \( n = A.lenght \), temos que:</p>
+              <p>Durante a iteração \( i \), o algoritmo vai executar o <code>for</code> interno, que contêm a lógica dos borbulhamentos.</p>
+              <p>Esse <code>for</code> interno vai iniciar com índice \( j = n \) e irá decrementar esse indice até terminar de executar quando \( j = i + 1\).</p>
+              <p>Assim, os borbulhamentos desse <code>for</code> interno, não vão afetar os elementos do array \( A[1...i-1] \), que já está ordenado em ordem crescente</p>
+              <p>O <code>for</code> interno, vai "enxergar" apenas o vetor \( A[i,...,n] \)</p>
+              <p>Vamos analisar a iteração \( j = i \) do <code>for</code> interno, ela nós mostrará, o estado do array, no fim da iteração \( j = i + 1 \) (analisamos o valor "anterior" ao fim do loop, porque o for interno decrementa) .</p>
+              <p>No início da execução \( j = i \) do <code>for</code> interno, o invariante provado no item B garante que, o elemento na posição \( j = i \) é menor ou igual a todos os elementos do subarray \( A[i+1,\,...,\,n] \).</p>
+              <p>Isso implica que o menor elemento do subarray \( A[i,\,...,\,n] \) foi "empurrado" até a posição \( A[i] \).</p>
+              <p>Como os elementos em \( A[1,\,...,\,i-1] \) já estavam ordenados (pela hipótese do invariante), e \( A[i] \) é menor ou igual a todos os elementos à sua direita, podemos concluir que o subarray \( A[1,\,...,\,i] \) está ordenado em ordem crescente ao final da iteração \( i \).</p>
+              <p> Podemos observar, que essa afirmação é exatamente o lugar que deveriamos chegar, para provar que o invariante é válido na proxima iteração, com indice \( i + 1 \). </p>
+              <p>Portanto, o invariante continua válido no início da próxima iteração.</p>
+              
+              <p><strong>Agora, vamos provar que o algoritmo é correto:</strong></p>
+              <p> Para isso, temos que provar que:</p>
+
+              <ol>
+                <li>que o algoritmo termina;</li>
+                <p> O algoritmo é composto por dois laços, ambos tem limites bem definidos de inicio e fim das suas execuções. Logo, podemos afirmar que o algoritmo é finito.</p>
+
+                <li>que o vetor final está em ordem crescente;</li>
+                <p>Seja \( n = A.lenght \), temos que:</p>
+                <p>A condição de parada do <code>for</code> externo, marca também o fim da execução do algortimo.</p>
+                <p>a ultima iteração do <code>for</code> externo é quando o valor de \( i = n - 1 \).</p>
+                <p>Queremos saber o estado do vetor no fim dessa execução. Então vamos analizar o início da próxima execução, onde \( i = n \).</p>
+                <p>Usando o invariante do <code>for</code> externo, provado no item anterior, temos que: no início da iteração \( n \), o subarray \(A[1,..., n - 1] \) está ordenado em ordem crescente.</p>
+                <p>Durante a última execução, o último valor a ser ordenado \( A[n] \) já foi comparado com, o valor de \( A[n-1] \), pelo <code>for</code> interno.</p>
+                <p>Portanto, podemos afirmar que no início da iteração \( n \) (quando o for vai quebrar), o vetor final \( A \) está ordenado em ordem crescente</p>
+                <li>que o vetor final é uma permutação da entrada.</li>
+                <p>Em nenhum momento da execução do algoritmo é realizada nenhuma inserção de valor no array de entrada, apenas trocas de posição entre os valores originais do array. Portanto, podemos afirmar que o vetor no fim do algoritmo é apenas uma permutação do array de entrada original.</p>
+              </ol>
+            </div>
+          </li>
+
+          <li>
+            <p>Qual é o tempo de execução do pior caso de bubblesort? Como ele se compara com o tempo de execução da ordenação por inserção?</p>
+            
+            <div class="answer">
+
+              <p><strong>Resposta:</strong></p>
+            
+              <p>Vamos começar a análise, de pior caso pelo bubbleSort:</p>
+
+              <div class="pseudocode">
+                <h3>Algoritmo: BubbleSort(A)</h3>
+                <p>Entrada: um vetor de inteiros A</p>
+                <p>Saída: vetor A ordenado em ordem crescente</p>
+                <ol>
+                  <li>for i = 1 to A.length-1</li>
+                  <li>&nbsp;&nbsp;&nbsp;&nbsp;for j = A.length downto i+1</li>
+                  <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if A[j] < A[j-1]</li>
+                  <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exchange A[j] with A[j-1]</li>
+                </ol>
+              </div>
+
+              <table class="answer">
+                <tr>
+                  <th>Linha</th>
+                  <th>Tempo de Execução</th>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>\( n - 1 \)</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>\( \sum_{i=1}^{n-1} ( n - (i + 2) ) \)</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>\( \sum_{i=1}^{n-1} ( n - (i + 2) - 1 ) \)</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>\( \sum_{i=1}^{n-1} ( n - (i + 2) - 1 ) \)</td>
+                </tr>
+              </table>
+
+              <div class="analysis">
+                <h3>Análise de Complexidade:</h3>
+                <p>O tempo de execução \( T(n) \) do algoritmo depende principalmente da linha do <code>if</code> dentro do laço interno, que representa as comparações entre os elementos, assim faremos a análise baseada apenas nessa linha do algoritmo (linha 3):</p>
+                
+                <h3>Tempo de Execução no Pior Caso:</h3>
+                <p>No pior caso, o algoritmo faz o maior número de comparações e permutações.</p>
+
+                <h4>Quantas Comparações São Feitas?</h4>
+                <p>A cada iteração do laço externo, o laço interno faz comparações entre os elementos. O número de comparações é dado por:</p>
+                <p>$$ T_{\text{comparações}}(n) = \sum_{i=1}^{n-1} (n (i + 2) - 1) $$</p>
+                <p>Este somatório representa a soma do número de comparações realizadas pelo laço interno em cada iteração do laço externo. Vamos simplificar a expressão do somatório:</p>
+
+                <p> $$ T_{\text{comparações}}(n) = \sum_{i=1}^{n-1} ( n - (i + 1)) $$ </p>
+                <p> $$ T_{\text{comparações}}(n) = \sum_{i=1}^{n-1} ( n ) - ( \sum_{i=1}^{n-1} (i) + \sum_{i=1}^{n-1} (1) )$$ </p>
+                <p> $$ T_{\text{comparações}}(n) = (n * (n - 1)) - ( \frac{(n * (n - 1))}{2} + (1 * (n - 1))) $$ </p>
+                <p> $$ T_{\text{comparações}}(n) = (n^2 - n) - ( \frac{(n^2 - n)}{2} + (n - n)) $$ </p>
+                <p> $$ T_{\text{comparações}}(n) = (n^2 - n) -  \frac{(n^2 - n)}{2} $$ </p>
+                <p> $$ T_{\text{comparações}}(n) = \frac{(n^2 - n)}{2} $$ </p>
+
+                <p>Desse modo, o tempo de execução do bubbleSort no pior caso é dado por:</p>
+                <p>$$ T(n) = \frac{(n^2 - n)}{2} $$</p>
+              </div>
+
+              <p>Agora, faremos a análise do por caso do insertionSort:</p>
+
+              <div class="pseudocode">
+                <h3>Algoritmo: InsertionSort(A)</h3>
+                <p>Entrada: um vetor de inteiros A</p>
+                <p>Saída: vetor A ordenado em ordem crescente</p>
+                <ol class="pseudocode">
+                  <li>for i = 2 to A.length</li>
+                  <li>&nbsp;&nbsp;&nbsp;&nbsp;key = A[i]</li>
+                  <li>&nbsp;&nbsp;&nbsp;&nbsp;j = i - 1</li>
+                  <li>&nbsp;&nbsp;&nbsp;&nbsp;while j &gt;= 1 and A[j] &gt; key</li>
+                  <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A[j + 1] = A[j]</li>
+                  <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;j = j - 1</li>
+                  <li>&nbsp;&nbsp;&nbsp;&nbsp;A[j + 1] = key</li>
+                </ol>
+              </div>
+
+              <table class="answer">
+                <tr>
+                  <th>Linha</th>
+                  <th>Tempo de Execução</th>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>\( n - 2 \)</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>\( n - 3 \)</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>\( n - 3 \)</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>\( \sum_{i=2}^{n} (i) \)</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>\( \sum_{i=2}^{n} (i - 1) \)</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>\( \sum_{i=2}^{n} (i - 1) \)</td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>\( n - 3 \)</td>
+                </tr>
+              </table>
+
+              <div class="analysis">
+                <h3>Análise de Complexidade:</h3>
+                <p>O tempo de execução \( T(n) \) do algoritmo depende principalmente da linha do <code>while</code>, que representa as comparações entre os elementos, assim faremos a análise baseada apenas nessa linha do algoritmo (linha 4):</p>
+                
+                <h3>Tempo de Execução no Pior Caso:</h3>
+                <p>No pior caso, o algoritmo faz o maior número de comparações e permutações.</p>
+
+                <h4>Quantas Comparações São Feitas?</h4>
+                <p>A cada iteração do laço externo, o laço interno faz comparações entre os elementos. O número de comparações é dado por:</p>
+                <p>$$ T_{\text{comparações}}(n) = \sum_{i=2}^{n} (i) $$</p>
+                <p>Este somatório representa a soma do número de comparações realizadas pelo laço interno em cada iteração do laço externo. Vamos simplificar a expressão do somatório:</p>
+
+                <p> $$ T_{\text{comparações}}(n) = \sum_{i=2}^{n} (i) $$ </p>
+                <p> $$ T_{\text{comparações}}(n) = \frac{(2 + n)n}{2} $$ </p>
+                <p> $$ T_{\text{comparações}}(n) = \frac{(2n + n^2)}{2} $$ </p>
+                <p> $$ T_{\text{comparações}}(n) = \frac{n^2}{2} + n $$ </p>
+
+                <p>Desse modo, o tempo de execução do insertionSort no pior caso é dado por:</p>
+                <p>$$ T(n) = \frac{n^2}{2} + n $$</p>
+              </div>
+
+              <p><strong>Comparação entre os tempos de execução</strong></p>
+              <p> Ambas as funções pertencem à mesma classe de ordem quadratica </p>
+
+              <p>Ou seja, quando o número de elementos cresce muito, o comportamento de ambas tende a crescer quadraticamente. </p>
+
+              <p>No entanto, o insertionSort, tem a adição de um termo linear \( n \), o que pode indicar que, ele pode ser mais custoso que o bubbleSort. </p>
+
+              <p>É possivel notar isso, no gráfico, das duas funções:</p>
+            
+              <canvas id="grafico" width="800" height="400"></canvas>
+            
+              <script>
+                const labels = Array.from({ length: 30 }, (_, i) => i + 1); // n de 1 a 30
+            
+                const bubbleSortData = labels.map(n => (n * n - n) / 2);
+                const insertionSortData = labels.map(n => (n * n) / 2 + n);
+            
+                const ctx = document.getElementById('grafico').getContext('2d');
+                new Chart(ctx, {
+                  type: 'line',
+                  data: {
+                    labels: labels,
+                    datasets: [
+                      {
+                        label: 'BubbleSort',
+                        data: bubbleSortData,
+                        borderColor: 'blue',
+                        backgroundColor: 'blue',
+                        tension: 0.3
+                      },
+                      {
+                        label: 'InsertionSort',
+                        data: insertionSortData,
+                        borderColor: 'red',
+                        backgroundColor: 'red',
+                        tension: 0.3
+                      }
+                    ]
+                  },
+                  options: {
+                    responsive: true,
+                    plugins: {
+                      title: {
+                        display: true,
+                        text: 'Crescimento de T(n)'
+                      }
+                    },
+                    scales: {
+                      x: {
+                        title: {
+                          display: true,
+                          text: 'n (tamanho da entrada)'
+                        }
+                      },
+                      y: {
+                        title: {
+                          display: true,
+                          text: 'T(n)'
+                        },
+                        beginAtZero: true
+                      }
+                    }
+                  }
+                });
+              </script>
+              <p>A função do insertionSort está sempre acima da do bubbleSort, o que reflete o termo \( n \) adicional, da função.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
