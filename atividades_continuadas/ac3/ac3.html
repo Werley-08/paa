@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Avaliação Continuada 3</title>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --secondary-color: #3498db;
+      --background-color: #f8f9fa;
+      --text-color: #333;
+      --border-color: #dee2e6;
+      --table-header-bg: #e9ecef;
+      --section-spacing: 2rem;
+      --content-spacing: 1.5rem;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: white;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    h1 {
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--secondary-color);
+      padding-bottom: 10px;
+      margin-bottom: var(--section-spacing);
+      text-align: center;
+    }
+
+    h2, h3, h4 {
+      color: var(--primary-color);
+      margin-top: var(--section-spacing);
+      margin-bottom: var(--content-spacing);
+    }
+
+    section {
+      margin-bottom: var(--section-spacing);
+      padding: 0 var(--content-spacing);
+    }
+
+    .question {
+      background-color: #fff;
+      border-left: 4px solid var(--secondary-color);
+      padding: var(--content-spacing);
+      margin-bottom: var(--section-spacing);
+      border-radius: 0 4px 4px 0;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: var(--content-spacing) 0;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: center;
+      border: 1px solid var(--border-color);
+    }
+
+    th {
+      background-color: var(--table-header-bg);
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f8f9fa;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    hr {
+      border: none;
+      height: 2px;
+      background-color: var(--secondary-color);
+      margin: var(--section-spacing) 0;
+      opacity: 0.3;
+    }
+
+    ul {
+      list-style-type: disc;
+      margin-left: 20px;
+      padding-left: 20px;
+      margin-bottom: var(--content-spacing);
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: var(--content-spacing);
+    }
+
+    strong {
+      color: var(--primary-color);
+    }
+
+    .math-display {
+      background-color: #f8f9fa;
+      padding: 15px;
+      border-radius: 5px;
+      margin: var(--content-spacing) 0;
+      overflow-x: auto;
+    }
+
+    .pseudocode {
+      background-color: #f8f9fa;
+      padding: var(--content-spacing);
+      border-radius: 5px;
+      margin: var(--content-spacing) 0;
+      font-family: monospace;
+    }
+
+    .analysis {
+      background-color: #f8f9fa;
+      padding: var(--content-spacing);
+      border-radius: 5px;
+      margin: var(--content-spacing) 0;
+    }
+
+    .itens li::marker {
+      color: var(--primary-color);         
+      font-size: 24px;    
+      font-weight: bold;  
+    }
+
+    .pseudocode li::marker{
+      all: revert;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 15px;
+      }
+      
+      th, td {
+        padding: 8px 10px;
+      }
+
+      :root {
+        --section-spacing: 1.5rem;
+        --content-spacing: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Avaliação Continuada 3</h1>
+
+    <section>
+      <div class="question">
+        <h2>Questão 1</h2>
+        <p><strong>Enunciado:</strong> Questão 1 (Partição). A entrada é uma lista \(L[1..n]\) de números, com \(n \geq 1\). Lembre-se que os nossos arrays nessa disciplina começam com o índice 1. O elemento \(L[1]\) é chamado de pivô. Seja \(k\) o número de elementos de \(L\) com valor menor ou igual ao pivô. Seu objetivo é especificar um algoritmo de tempo linear \(\Theta(n)\) para reorganizar os elementos de \(L\) de modo que as três condições a seguir sejam satisfeitas:</p>
+
+        <ol>
+          <li>O pivô \(L[1]\) seja reposicionado para a posição \(k\).</li>
+          <li>Os elementos com valor menor ou igual ao pivô sejam colocados nas \(k\) primeiras posições.</li>
+          <li>Os elementos com valor maior que o pivô sejam colocados nas últimas \(n-k\) posições.</li>
+        </ol>
+
+        <p><strong>Obs. 1:</strong> Este problema poderia ser resolvido simplesmente ordenando a lista, mas neste caso gastaria tempo \(\Theta(n \log n)\).</p>
+        <p><strong>Obs. 2:</strong> Este algoritmo é utilizado pelo algoritmo de ordenação Quicksort.</p>
+
+        <h3>Passos Básicos:</h3>
+        <p>Utilize dois índices \(i\) e \(j\). O índice \(i\) vai da posição 2 em direção em final da lista, e o índice \(j\) vai da última posição em direção ao início da lista. Em cada iteração, avançe o \(i\) se \(L[i]\) é menor ou igual ao pivô. Caso contrário, avançe o \(j\) se \(L[j]\) é maior que o pivô. Se nenhuma destas condições ocorrer, troque \(L[i]\) com \(L[j]\) e avance \(i\) e \(j\). A repetição termina quando \(j < i\). Finalmente, reposicione o pivô de modo que apenas elementos maiores que o pivô estejam à direita dele.</p>
+
+        <h3>Invariante de laço:</h3>
+        <p>INV1: Todos os elementos nas posições menores que \(i\) possuem valor menor ou igual ao pivô.</p>
+        <p>INV2: Todos os elementos nas posições maiores que \(j\) possuem valor maior que o pivô.</p>
+
+        <p>Forneça resposta para cada um dos itens abaixo:</p>
+        <ol class="itens">
+
+          <li>Forneça uma medida de progresso, e argumente que o algoritmo termina.</li>
+
+          <div class="answer">
+            <p><strong>Resposta:</strong></p>
+            <p>Em cada iteração do laço, pelo menos um dos índices \(i\) ou \(j\) é atualizado, o que diminui a quantidade de elementos restantes a serem analisados. Como \(i\) começa em 2 e \(j\) começa em \(n\), e o laço continua enquanto \(i \leq j\), esse processo termina em no máximo \(n-1\) passos. Logo, o algoritmo termina.</p>
+          </div>
+
+          <li>Indique como estabelecer o invariante do laço, ou seja, quais ações no código pré-laço tornam o invariante do laço verdadeiro na primeira iteração. Justifique.</li>
+
+          <div class="answer">
+            <p><strong>Resposta:</strong></p>
+            <p>Antes do início do laço, os índices são inicializados com \(i = 2\) e \(j = n\), e nenhum elemento foi processado ainda. Isso garante que os intervalos \([1..i-1]\) e \([j+1..n]\) estão vazios, ou seja, triviais, e assim os invariantes são verdadeiros: nenhum elemento menor ou igual ao pivô foi ainda movido para antes de \(i\), e nenhum elemento maior que o pivô está posicionado após \(j\).</p>
+          </div>
+
+          <li>Qual o código do laço? Argumente que ele mantém o invariante do laço.</li>
+
+          <div class="answer">
+            <p><strong>Resposta:</strong></p>
+            <div class="pseudocode">
+              <ol>
+                <li>enquanto i &le; j faça</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;se L[i] &le; pivo então</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i = i + 1</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;senão se L[j] &gt; pivo então</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;j = j - 1</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;senão</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;troca L[i] com L[j]</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i = i + 1</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;j = j - 1</li>
+              </ol>
+            </div>
+            <p>Em cada caso:</p>
+            <ul>
+              <li>Se \(L[i] \leq\) pivô, então \(L[i]\) está corretamente posicionado à esquerda, mantendo o invariante 1.</li>
+              <li>Se \(L[j] >\) pivô, então \(L[j]\) está corretamente posicionado à direita, mantendo o invariante 2.</li>
+              <li>Se nenhum dos dois, os elementos estão trocados para garantir que o valor menor ou igual vá para a esquerda e o maior vá para a direita, e os índices são atualizados de modo que os intervalos válidos cresçam.</li>
+            </ul>
+          </div>
+
+          <li>Argumente que o invariante do laço e a condição de saída garantem que, assim que a execução sair do laço teremos \(j = i-1\).</li>
+
+          <div class="answer">
+            <p><strong>Resposta:</strong></p>
+              O laço termina quando \(i > j\), ou seja, quando os índices se cruzam. Como em cada passo \(i\) e/ou \(j\) se aproximam, a única possibilidade para que a condição \(i > j\) se torne verdadeira é que \(j = i - 1\). Assim, sabemos que os elementos à esquerda de \(i\) estão todos ≤ pivô e à direita de \(j\) estão todos > pivô.
+          </div>
+
+          <li>Qual o código pós-laço? Argumente que as pós-condições são satisfeitas.</li>
+
+          <div class="answer">
+            <p><strong>Resposta:</strong></p>
+            <div class="pseudocode">
+              <ol>
+                <li>troca L[1] com L[j]</li>
+                <li>return L</li>
+              </ol>
+            </div>
+            <p>Após o laço, o pivô é trocado com \(L[j]\), garantindo que ele seja colocado entre os elementos ≤ pivô e os elementos > pivô:</p>
+            <pre>troca L[1] com L[j]</pre>
+            <p>Isso satisfaz:</p>
+            <ol>
+              <li>O pivô agora está em \(L[j]\), na posição correta \(k = j\).</li>
+              <li>Os elementos com valor ≤ pivô estão nas posições 1 até \(k\).</li>
+              <li>Os elementos > pivô estão em \(k+1\) até \(n\).</li>
+            </ol>
+          </div>
+
+          <li>Forneça o pseudocódigo.</li>
+
+          <div class="answer">
+            <p><strong>Resposta:</strong></p>
+            <div class="pseudocode">
+              <h3>Algoritmo: Particiona(L, n)</h3>
+              <p>Entrada: o vetor L[1..n], com n ≥ 1</p>
+              <p>Saída: o vetor L particionado com o pivô L[1] na posição correta</p>
+              <ol>
+                <li>pivo = L[1]</li>
+                <li>i = 2</li>
+                <li>j = n</li>
+                <li>enquanto i &le; j faça</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;se L[i] &le; pivo então</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i = i + 1</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;senão se L[j] &gt; pivo então</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;j = j - 1</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;senão</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;troca L[i] com L[j]</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i = i + 1</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;j = j - 1</li>
+                <li>troca L[1] com L[j]</li>
+                <li>return L</li>
+              </ol>
+            </div>
+          </div>
+
+          <li>Considere os casos especiais a seguir e indique, caso necessário, quais adaptações devem ser feitas no algoritmo para atendê-los:
+            <ul>
+              <li>A lista tem apenas 1 elemento.</li>
+
+              <div class="answer">
+                <p><strong>Resposta:</strong></p>
+                <p>O laço nunca é executado pois \(i = 2 > j = 1\). A troca do pivô com ele mesmo não afeta o resultado. O algoritmo funciona sem alterações.</p>
+              </div>
+
+              <li>Nenhum elemento é maior que o pivô.</li>
+
+              <div class="answer">
+                <p><strong>Resposta:</strong></p>
+                <p>Todos os elementos ≤ pivô. O índice \(i\) avança até ultrapassar \(j\), sem nunca realizar trocas. O pivô será reposicionado no final da sequência. Funciona sem alterações.</p>
+              </div>
+
+              <li>Exceto o pivô, todo os outros elementos são maiores que o pivô.</li>
+
+              <div class="answer">
+                <p><strong>Resposta:</strong></p>
+                <p>Nenhum avanço de \(i\), apenas decrementos em \(j\). O pivô é trocado com \(L[1]\) (ele mesmo), ficando na posição correta. Funciona sem alterações.</p>
+              </div>
+            </ul>
+          </li>
+
+          <li>Forneça a complexidade de tempo de pior caso em notação \(O\).</li>
+
+          <div class="answer">
+            <p><strong>Resposta:</strong></p>
+            <p>O algoritmo percorre cada elemento no máximo uma vez. As operações dentro do laço são todas de tempo constante. Logo, a complexidade de tempo no pior caso é \(O(n)\).</p>
+          </div>
+
+        </ol>
+      </div>
+    </section>
+
+    <section>
+      <div class="question">
+        <h2>Questão 2</h2>
+        <p><strong>Enunciado:</strong> Questão 2 (Intercalação). Nesta questão, queremos que você resolva o problema da intercalação de listas.</p>
+
+        <h3>Entrada:</h3>
+        <p>A entrada são duas listas \(L[1..p]\) e \(M[1..q]\) de números, com \(p \geq 1\) e \(q \geq 1\), tal que as duas listas estão ordenadas em ordem crescente. Lembre-se que as nossas listas nessa disciplina começam com o índice 1.</p>
+
+        <h3>Objetivo:</h3>
+        <p>Seu objetivo é especificar um algoritmo de tempo linear \(\Theta(n)\) para criar uma terceira lista \(N[1..p+q]\) contendo os elementos das listas \(L\) e \(M\) em ordem crescente. Essa nova lista \(N\) deve ser retornada como resultado do seu algoritmo.</p>
+
+        <h3>Saída:</h3>
+        <p>Lista \(N[1..p+q]\) ordenada em ordem crescente.</p>
+
+        <p><strong>Obs. 1:</strong> Este problema poderia ser resolvido simplesmente copiando os elementos de \(L\) e \(M\) em \(N\) e ordenando a lista \(N\), mas neste caso gastaria tempo \(\Theta(n \log n)\).</p>
+        <p><strong>Obs. 2:</strong> Este problema é uma leve modificação de um problema semelhante que ocorre como subrotina no algoritmo de ordenação Mergesort.</p>
+
+        <h3>Passos Básicos:</h3>
+        <p>Utilize dois índices \(i\) e \(j\). O índice \(i\) indica a posição do menor elemento da lista \(L\) que ainda não foi copiado para a lista de saída, e o índice \(j\) indica a posição do menor elemento da lista \(M\) que ainda não foi copiado para a lista de saída. Em cada iteração, avançe o \(i\) se \(L[i] \leq M[j]\). Caso contrário, avançe o \(j\). A repetição termina quando \((i > p)\) ou \((j > q)\). Neste momento, uma das listas ficou vazia, mas a outra ainda pode conter elementos. É preciso copiar a lista resultante no vetor de saída.</p>
+
+        <p>Forneça resposta para cada um dos itens abaixo:</p>
+        <ol class="itens">
+          <li>Forneça uma invariante de laço para o laço principal do seu algoritmo.</li>
+
+          <div class="answer">
+            <p><strong>Resposta:</strong></p>
+            <p>"No início do laço while principal (linhas 4 á 10), o subvetor \( N[1,..., i + j - 2] \), está ordenado em ordem crescente, e contém todos os elementos de \( L[1,..., i - 1] \) e \( M[1,..., j - 1] \)"</p>
+          </div>
+
+          <li>Forneça uma medida de progresso, e argumente que o algoritmo termina.</li>
+
+          <div class="answer">
+            <p><strong>Resposta:</strong></p>
+            <p>Todos os laços do algoritmo tem limites bem definidos, e seus indices estão sendo incrementados em todas as iterações. Assim, pode-se concluir que o algoritmo é finito.</p>
+          </div>
+
+          <li>Indique como estabelecer o invariante do laço, ou seja, quais ações no código pré-laço tornam o invariante do laço verdadeiro na primeira iteração. Justifique.</li>
+
+          <div class="answer">
+            <p><strong>Resposta:</strong></p>
+            <p>No início do algoritmo (pré-laço), temos:</p>
+            <ul>
+              <li>\( i = 1 \)</li>
+              <li>\( j = 1 \)</li>
+            </ul>
+            <p>Assim, \( N[1,..., i + j - 2] = N [1,...,0] \), ou seja, antes do início da primeira iteração, \( N \) é um vetor vazio</p>
+            <p>Logo, por vacuidade, podemos afirmar que \( N \) está ordenado, no início da primeira iteração</p>
+          </div>
+
+          <li>Qual o código do laço? Argumente que ele mantém o invariante do laço.</li>
+
+          <div class="answer">
+            <p><strong>Resposta:</strong></p>
+            <div class="pseudocode">
+              <ol>
+                <li>N = array de tamanho (p + q)</li>
+                <li>i = 1</li>
+                <li>j = 1</li>
+                <li>enquanto i &lt;= p e j &lt;= q faça</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;if L[i] &lt;= M[j]</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;N[i + j - 1] = L[i]</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i = i + 1</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;else</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;N[i + j - 1] = M[j]</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;j = j + 1</li>
+              </ol>
+            </div>
+            <p>O elemento \( L[i] \) ou \( M[j] \) escolhido é o menor entre os dois, e é colocado na próxima posição disponível em \( N \). Como \( L \) e \( M \) estão ordenados, e só se copia o menor, \( N \) continua ordenado, e a invariante se mantém.</p>
+          </div>
+
+          <li>Argumente que o invariante do laço e a condição de saída garantem que, assim que a execução sair do laço teremos \((i > p)\) ou \((j > q)\).</li>
+
+          <div class="answer">
+            <p><strong>Resposta:</strong></p>
+            <p>O laço para quando \( (i > p) \) ou \( (j > q) \) , ou seja, uma das listas foi completamente processada. A invariante garante que até \( N[1..(i + j - 2)] \) está ordenado e contém todos os elementos já processados.</p>
+          </div>
+
+          <li>Qual o código pós-laço? Argumente que as pós-condições são satisfeitas.</li>
+
+          <div class="answer">
+            <p><strong>Resposta:</strong></p>
+            <div class="pseudocode">
+              <ol>
+                <li>enquanto i &lt;= p faça</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;N[i + j - 1] = L[i]</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;i = i + 1</li>
+                <li>enquanto j &lt;= q faça</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;N[i + j - 1] = M[j]</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;j = j + 1</li>
+                <li>return N</li>
+              </ol>
+            </div>
+            <p>Depois do laço principal, apenas uma das listas pode ter sobrado com elementos. Esses elementos restantes já estão em ordem crescente e podem ser copiados diretamente para \( N \). Como os anteriores também estavam em ordem, \( N \) continua ordenado no final.</p>
+          </div>
+
+          <li>Forneça o pseudocódigo.</li>
+
+          <div class="answer">
+            <p><strong>Resposta:</strong></p>
+            <div class="pseudocode">
+              <h3>Algoritmo: Intercala(L, M, p, q)</h3>
+              <p>Entrada: dois vetores ordenados em ordem crescente L e M, e seus tamanhos p e q, respectivamente</p>
+              <p>Saída: o vetor N sendo a intercalação dos dois vetores de entrada em ordem crescente</p>
+              <ol>
+                <li>N = array de tamanho (p + q)</li>
+                <li>i = 1</li>
+                <li>j = 1</li>
+                <li>enquanto i &lt;= p e j &lt;= q faça</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;if L[i] &lt;= M[j]</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;N[i + j - 1] = L[i]</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i = i + 1</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;else</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;N[i + j - 1] = M[j]</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;j = j + 1</li>
+                <li>enquanto i &lt;= p faça</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;N[i + j - 1] = L[i]</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;i = i + 1</li>
+                <li>enquanto j &lt;= q faça</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;N[i + j - 1] = M[j]</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;j = j + 1</li>
+                <li>return N</li>
+              </ol>
+            </div>
+          </div>
+
+          <li>Considere os casos especiais a seguir e indique, caso necessário, quais adaptações devem ser feitas no algoritmo para atendê-los:
+            <ul>
+              <li>As listas dadas como entrada têm apenas 1 elemento.</li>
+                <div class="answer">
+                  <p><strong>Resposta:</strong></p>
+                  <p>Nenhuma adaptação é necessária.</p>
+                </div>
+              <li>Os elementos de uma das listas são todos iguais.</li>
+                <div class="answer">
+                  <p><strong>Resposta:</strong></p>
+                  <p>Nenhuma adaptação é necessária.</p>
+                </div>
+            </ul>
+          </li>
+          <li>Forneça a complexidade de tempo de pior caso em notação \(O\).</li>
+
+          <div class="answer">
+            <p><strong>Resposta:</strong></p>
+            <p>Vamos começar pontuando algumas coisas importantes:</p>
+            <ul>
+              <li>O laço principal (linha 4) roda até que um dos vetores se esgote, ou seja, no máximo \( (p + q) \) vezes.</li>
+              <li>O total de atribuições em \( N[...] \) será exatamente \( (p + q) \), pois são colocados todos os elementos.</li>
+              <li>As linhas 11 a 16 completam o que sobrou de um dos vetores, então seu número de execuções depende de quanto sobrou.</li>
+            </ul>
+            <p>Portanto, podemos concluir que o algoritmo executa em tempo linear com relação ao tamanho total das listas.</p>
+            <p> $$ O(p + q) $$ ou apenas, $$ O(n) $$</p>
+          </div>
+
+        </ol>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
