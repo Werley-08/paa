@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Avaliação Continuada 4</title>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --secondary-color: #3498db;
+      --background-color: #f8f9fa;
+      --text-color: #333;
+      --border-color: #dee2e6;
+      --table-header-bg: #e9ecef;
+      --section-spacing: 2rem;
+      --content-spacing: 1.5rem;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: white;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    h1 {
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--secondary-color);
+      padding-bottom: 10px;
+      margin-bottom: var(--section-spacing);
+      text-align: center;
+    }
+
+    h2, h3, h4 {
+      color: var(--primary-color);
+      margin-top: var(--section-spacing);
+      margin-bottom: var(--content-spacing);
+    }
+
+    section {
+      margin-bottom: var(--section-spacing);
+      padding: 0 var(--content-spacing);
+    }
+
+    .question {
+      background-color: #fff;
+      border-left: 4px solid var(--secondary-color);
+      padding: var(--content-spacing);
+      margin-bottom: var(--section-spacing);
+      border-radius: 0 4px 4px 0;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: var(--content-spacing) 0;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: center;
+      border: 1px solid var(--border-color);
+    }
+
+    th {
+      background-color: var(--table-header-bg);
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f8f9fa;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    hr {
+      border: none;
+      height: 2px;
+      background-color: var(--secondary-color);
+      margin: var(--section-spacing) 0;
+      opacity: 0.3;
+    }
+
+    ul {
+      list-style-type: disc;
+      margin-left: 20px;
+      padding-left: 20px;
+      margin-bottom: var(--content-spacing);
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: var(--content-spacing);
+    }
+
+    strong {
+      color: var(--primary-color);
+    }
+
+    .math-display {
+      background-color: #f8f9fa;
+      padding: 15px;
+      border-radius: 5px;
+      margin: var(--content-spacing) 0;
+      overflow-x: auto;
+    }
+
+    .pseudocode {
+      background-color: #f8f9fa;
+      padding: var(--content-spacing);
+      border-radius: 5px;
+      margin: var(--content-spacing) 0;
+      font-family: monospace;
+    }
+
+    .analysis {
+      background-color: #f8f9fa;
+      padding: var(--content-spacing);
+      border-radius: 5px;
+      margin: var(--content-spacing) 0;
+    }
+
+    .itens li::marker {
+      color: var(--primary-color);         
+      font-size: 24px;    
+      font-weight: bold;  
+    }
+
+    .pseudocode li::marker{
+      all: revert;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 15px;
+      }
+      
+      th, td {
+        padding: 8px 10px;
+      }
+
+      :root {
+        --section-spacing: 1.5rem;
+        --content-spacing: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Avaliação Continuada 4</h1>
+
+    <section>
+      <div class="question">
+        <h2>Questão 1</h2>
+        <p><strong>Enunciado:</strong> Utilize o método da substituição para calcular a complexidade de tempo de pior caso do algoritmo recursivo abaixo. No algoritmo abaixo, o parâmetro V da função é um vetor de inteiros e o parâmetro N é o tamanho do vetor. A operação de divisão usada é a divisão inteira, ou seja, é a divisão que sempre resulta em um inteiro.</p>
+
+        <div class="pseudocode">
+          <h3>Algoritmo: Algoritmo(V, n)</h3>
+          <p>Entrada: um vetor V com n inteiros</p>
+          <p>Saída: soma dos elementos do vetor V</p>
+          <ol>
+            <li>Se n == 0 entao</li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;Retorne 0</li>
+            <li>Senao</li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;soma = 0</li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;Para j = 1, ..., n faça</li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;soma = soma + V[j]</li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;Retorne soma + Algoritmo(V, n/2)</li>
+          </ol>
+        </div>
+
+        <ol class="itens">
+          <li>Forneça uma hipótese para T(n) e prove por indução que ela é válida.</li>
+
+          <div class="answer">
+            <p><strong>Resposta:</strong></p>
+            
+            <table class="answer">
+              <tr>
+                <th>Linha</th>
+                <th>Tempo de Execução</th>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td> \( \Theta(1) \) </td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td> \( \Theta(1) \) </td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td> \( \Theta(1) \) </td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td> \( \Theta(1) \) </td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td> \( \sum_{j=1}^{n} (1)  = n\)</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td> \( (\sum_{j=1}^{n} (1)) - 1  = (n - 1)\) </td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td> \( T(\frac{n}{2}) + \Theta(1) \) </td>
+              </tr>
+            </table>
+
+            <div class="analysis">
+              <h3>Análise de Complexidade:</h3>
+              <p>Vamos calcular a complexidade \( T(n) \) com base na soma de todas as linhas da tabela </p>
+
+              <h4>Como funciona essa soma?</h4>
+
+              <ol>
+                <li> Se \( n = 0 \), \( T(n) = \Theta(1) = 1 \);</li>
+                <li> Se \( n > 0 \), \( T(n) = T(\frac{n}{2}) + n + (n - 1) + \Theta(1) = T(\frac{n}{2}) + 2n \) </li>
+              </ol>
+
+              <p>Agora vamos provar que essa recorrência é válida, usando indução:</p>
+
+              <h4>Palpite</h4>
+              <p> Vou palpitar que essa recorrência \( T(n) = O(n) \) </p>
+
+              <h4>Hipótese de Indução</h4>
+              <p> Seja \(k\), tal que \( n_0 \leq k \leq n \), então:</p>
+              <p> $$ T(k) \leq ck $$ </p>
+
+              <h4>Passo indutivo</h4>
+              <p> $$ T(n) = T(\frac{n}{2}) + 2n $$ </p>
+              <p>Pela hipótese de indução, temos:</p>
+              <p> $$ T(n) \leq \frac{cn}{2} + 2n $$ </p>
+
+              <p>Agora, vamos comparar \( T(n) \), com o limite que queremos provar, para encontrar um valor de \( c \), que torne a inequação verdadeira.</p>
+              <p> $$ \frac{cn}{2} + 2n \leq cn $$ </p>
+              <p> $$ (\frac{c}{2} + 2)n \leq cn $$ </p>
+              <p> $$ \frac{c}{2} + 2 \leq c $$ </p>
+              <p> $$ \frac{c + 4}{2} \leq c $$ </p>
+              <p> $$ 2c\leq c + 4 $$ </p>
+              <p> $$ c \geq 4 $$ </p>
+              <p>Assim, podemos afirmar que para valores de \( c \geq 4 \), a inequação é verdade.</p>
+
+              <p>Portanto, \( T(n) = \Theta(n) \)</p>
+            </div>
+          </div>
+        </ol>
+      </div>
+    </section>
+
+    <section>
+      <div class="question">
+        <h2>Questão 2</h2>
+        <p><strong>Enunciado:</strong> É possível provar que a solução para a recorrência \(T(n)=4T(n/3)+n\) é \(T(n)=\Theta(n^{\log_3 4})\). Mostre que uma prova de substituição que considere \(T(n)\leq cn^{\log_3 4}\) falha. Depois, mostre como subtrair um termo de ordem mais baixa para fazer com que uma prova de substituição funcione. Basta provar apenas o limitante superior, não precisa provar o inferior.</p>
+
+        <ol class="itens">
+          <li>Mostre que a prova com \(T(n)\leq cn^{\log_3 4}\) falha.</li>
+
+          <div class="answer">
+            <p><strong>Resposta:</strong></p>
+            
+            <p>Vamos tentar provar que a recorrência é válida, por indução:</p>
+
+            <p> Seja \(k\), tal que \( n_0 \leq k \leq n \), então:</p>
+            <p> $$ T(k) \leq ck^{\log_3 4} $$ </p>
+
+            <p>Agora, vamos considerar \( T(n) \)</p>
+            <p> $$ T(n)=4T(\frac{n}{3})+n $$ </p>
+            <p> $$ T(n)=4c \frac{n^(log_3 4)}{3^(log_3 4)} + n $$ </p>
+            <p> $$ T(n)=4c \frac{n^(log_3 4)}{4} + n $$ </p>
+            <p> $$ T(n)= cn^(log_3 4) + n $$ </p>
+
+            <p> Com o limite que palpitamos, não é possivel continuar com a prova. </p>
+              
+          </div>
+
+          <li>Mostre como subtrair um termo de ordem mais baixa para fazer a prova funcionar.</li>
+
+          <div class="answer">
+            <p><strong>Resposta:</strong></p>
+            
+            <p> Agora, vamos fortalecer nossa hipótese</p>
+
+            <p> Seja \(k\), tal que \( n_0 \leq k \leq n \), e \( a > 0 \) então:</p>
+            <p> $$ T(k) \leq ck^{\log_3 4} - ak $$ </p>
+
+            <p> Agora, vamos considerar, \( T(n) \) </p>
+            <p> $$ T(n)=4T(\frac{n}{3})+n $$ </p>
+            <p> Por Hipótese de indução, temos: </p>
+            <p> $$ 4 ( c (\frac{n^(\log_3 4)}{3^(\log_3 4)}) - a \frac{n}{3} ) + n $$ </p>
+            <p> $$ (\frac{4cn^(\log_3 4)}{4}) - 4a \frac{n}{3} + n $$ </p>
+            <p> $$ cn^(\log_3 4) - \frac{4an}{3} + n $$ </p>
+            <p> $$ cn^(\log_3 4) - n(\frac{4a}{3} - 1) $$ </p>
+
+            <p> Para que isso seja menor que \( cn^(\log_3 4) - an\), precisamos que: </p>
+            <p> $$ \frac{4a}{3} - 1 \leq a $$ </p>
+            <p> $$ \frac{4a - 3}{3} \leq a $$ </p>
+            <p> $$ 4a - 3 \leq 3a $$ </p>
+            <p> $$ a \geq 3 $$ </p>
+
+            <p> Com isso, podemos afirmar que \( T(n) \) é \( O(n^(\log_3 4) - an ) \), para valores de \(a \geq 3\) </p>
+
+          </div>
+        </ol>
+      </div>
+    </section>
+
+    <section>
+      <div class="question">
+        <h2>Questão 3</h2>
+        <p><strong>Enunciado:</strong> Use o método da árvore de recursão para dar um bom limitante superior assintótico para a recorrência \(T(n)=4T(\lfloor n/2 \rfloor)+cn\), onde \(c\) é uma constante positiva.</p>
+
+        <ol class="itens">
+          <li>Analise a árvore de recursão e forneça o limitante superior.</li>
+
+          <div class="answer">
+                Não deu tempo de fazer
+          </div>
+        </ol>
+      </div>
+    </section>
+
+    <section>
+      <div class="question">
+        <h2>Questão 4</h2>
+        <p><strong>Enunciado:</strong> Use o teorema mestre para fornecer limites assintóticos restritos para as recorrências a seguir.</p>
+
+        <ol class="itens">
+          <li>\(T(n) = 2T(n/4) + 1\)</li>
+
+          <div class="answer">
+            <p><strong>Resposta:</strong></p>
+            <p>\(a = 2, b = 4, f(n) = 1\)</p>
+            <p>\(n^{\log_4 2} = n^{1/2}\)</p>
+            <p> \(f(n) = 1 \leq cn^{1/2 - \varepsilon}\) para \(\varepsilon = 1/2\), e  \( c = 1 \)</p>
+            <p>Portanto, pelo caso 1 do teorema mestre: \(T(n) = \Theta(n^{2/4})\)</p>
+          </div>
+
+          <li>\(T(n) = 2T(n/4) + n^2\)</li>
+
+          <div class="answer">
+            <p><strong>Resposta:</strong></p>
+            <p>\(a = 2, b = 4, f(n) = n^2\)</p>
+            <p>\(n^{\log_4 2} = n^{1/2}\)</p>
+            <p> \( f(n) = n^2 \geq cn^{1/2 + \varepsilon} \), para \( \varepsilon =  1/2\) e \( c = 1 \) </p>
+            <p> Assim, temos que \( f(n) = \Omega(n) \) </p>
+            <p> Para encontramos o limite assintótico, usando o caso 3 do teorema mestre, temos que provar ainda que: \( af( \frac{n}{b} ) \leq cf(n)\)</p>
+            <p> \( 2f( \frac{n}{4} ) \leq cf(n)\) </p>
+            <p> Vamos assumir que \( c = \frac{1}{2} \) </p>
+            <p> \( 2 (\frac{n}{4})^2 \leq \frac{n^2}{2} \) </p>
+            <p> \( \frac{2n^2}{16} \leq \frac{n^2}{2} \) </p>
+            <p> \( \frac{n^2}{8} \leq \frac{n^2}{2} \) </p>
+            <p> Podemos afirmar que a inequação é verdade, pois o \( n^2 \) do lado esquerdo está sendo dividido por um numero maior que o \( n^2 \) do lado direito, tornando-se sempre menor, para valores de \( n \geq 1 \)</p>
+            <p>Portanto, pelo caso 3 do teorema mestre: \(T(n) = \Theta(n^2)\)</p>
+          </div>
+
+          <li>\(T(n) = 2T(n/4) + n\)</li>
+
+          <div class="answer">
+            <p><strong>Resposta:</strong></p>
+            <p>\(a = 2, b = 4, f(n) = n\)</p>
+            <p>\(n^{\log_4 2} = n^{1/2}\)</p>
+            <p>\(f(n) = n \geq n^{\frac{1}{2} + \varepsilon} \) para \(\varepsilon = 1/2\)</p>
+            <p> Assim, temos que \( f(n) = \Omega(n) \) </p>
+            <p> Para encontramos o limite assintótico, usando o caso 3 do teorema mestre, temos que provar ainda que: \( af( \frac{n}{b} ) \leq cf(n)\)</p>
+            <p> \( 2f( \frac{n}{4} ) \leq cf(n)\) </p>
+            <p> \( 2\frac{n}{4} \leq cn\) </p>
+            <p>Para \( c = \frac{1}{2} \)</p>
+            <p> \( \frac{2n}{4} \leq \frac{n}{2} \) </p>
+            <p> \( \frac{n}{2} \leq \frac{n}{2} \) </p>
+            <p> Para valores de \( n \geq 1 \), é possivel afirmar a corretude da inequação. </p>
+            <p> Portanto, pelo caso 3 do teorema mestre: \(T(n) = \Theta(n^2)\)</p>
+          </div>
+
+          <li>\(T(n) = 2T(n/4) + \sqrt{n}\)</li>
+
+          <div class="answer">
+            <p><strong>Resposta:</strong></p>
+            <p>\(a = 2, b = 4, f(n) = \sqrt{n} \)</p>
+            <p> Vamos usar o caso 2 do teorema mestre, para encontrar os limites assintóticos dessa recorrência. </p>
+            <p> Primeiro vamos provar que \( f(n) = O(n^{\log_4 2}) \) </p>
+            <p>\(n^{\log_4 2} = n^{1/2}\)</p>
+            <p>\(f(n) = \sqrt{n} \leq n^{1/2} \)</p>
+            <p>\(f(n) = \sqrt{n} \leq \sqrt{n} \)</p>
+            <p> Agora vamos provar que \( f(n) = \Omega(n^{\log_4 2}) \) </p>
+            <p>\(f(n) = \sqrt{n} \leq n^{1/2} \)</p>
+            <p>\(f(n) = \sqrt{n} \leq \sqrt{n} \)</p>
+            <p>Com isso, é possivel afirmar que \( f(n) = \Theta(n^{2/4}) \)</p>
+            <p>Portanto, pelo caso 2, do teorema mestre: \(T(n) = \Theta(n^{2/4} \log n)\)</p>
+          </div>
+        </ol>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
