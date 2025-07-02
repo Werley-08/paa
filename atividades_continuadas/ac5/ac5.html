@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Avaliação Continuada 5</title>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --secondary-color: #3498db;
+      --background-color: #f8f9fa;
+      --text-color: #333;
+      --border-color: #dee2e6;
+      --table-header-bg: #e9ecef;
+      --section-spacing: 2rem;
+      --content-spacing: 1.5rem;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: white;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    h1 {
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--secondary-color);
+      padding-bottom: 10px;
+      margin-bottom: var(--section-spacing);
+      text-align: center;
+    }
+
+    h2, h3, h4 {
+      color: var(--primary-color);
+      margin-top: var(--section-spacing);
+      margin-bottom: var(--content-spacing);
+    }
+
+    section {
+      margin-bottom: var(--section-spacing);
+      padding: 0 var(--content-spacing);
+    }
+
+    .question {
+      background-color: #fff;
+      border-left: 4px solid var(--secondary-color);
+      padding: var(--content-spacing);
+      margin-bottom: var(--section-spacing);
+      border-radius: 0 4px 4px 0;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: var(--content-spacing) 0;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: center;
+      border: 1px solid var(--border-color);
+    }
+
+    th {
+      background-color: var(--table-header-bg);
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f8f9fa;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    hr {
+      border: none;
+      height: 2px;
+      background-color: var(--secondary-color);
+      margin: var(--section-spacing) 0;
+      opacity: 0.3;
+    }
+
+    ul {
+      list-style-type: disc;
+      margin-left: 20px;
+      padding-left: 20px;
+      margin-bottom: var(--content-spacing);
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: var(--content-spacing);
+    }
+
+    strong {
+      color: var(--primary-color);
+    }
+
+    .math-display {
+      background-color: #f8f9fa;
+      padding: 15px;
+      border-radius: 5px;
+      margin: var(--content-spacing) 0;
+      overflow-x: auto;
+    }
+
+    .pseudocode {
+      background-color: #f8f9fa;
+      padding: var(--content-spacing);
+      border-radius: 5px;
+      margin: var(--content-spacing) 0;
+      font-family: monospace;
+    }
+
+    .analysis {
+      background-color: #f8f9fa;
+      padding: var(--content-spacing);
+      border-radius: 5px;
+      margin: var(--content-spacing) 0;
+    }
+
+    .itens li::marker {
+      color: var(--primary-color);         
+      font-size: 24px;    
+      font-weight: bold;  
+    }
+
+    .pseudocode li::marker{
+      all: revert;
+    }
+
+    .answer {
+      background-color: #e8f4f8;
+      padding: var(--content-spacing);
+      border-radius: 5px;
+      margin: var(--content-spacing) 0;
+      border-left: 4px solid var(--secondary-color);
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 15px;
+      }
+      
+      th, td {
+        padding: 8px 10px;
+      }
+
+      :root {
+        --section-spacing: 1.5rem;
+        --content-spacing: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Avaliação Continuada 5</h1>
+
+    <section>
+      <div class="question">
+        <h2>Questão 1</h2>
+        <p><strong>Enunciado:</strong> Considere o grafo abaixo:</p>
+        
+        <div style="text-align: center; margin: 20px 0;">
+          <img src="g2.jpg" alt="Grafo G2" style="max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 5px;">
+        </div>
+
+        <p>Um teste de mesa consiste em executar manualmente os passos do algoritmo, anotando os estados das variáveis ao longo da execução. Realize um teste de mesa do algoritmo de busca em largura no grafo acima, iniciando no nó <strong>a</strong>. Forneça a distância e o predecessor de cada nó, conforme obtido através do algoritmo. A distância de um nó é o menor número de arestas do nó até o nó inicial <strong>a</strong>. O predecessor de um nó é o pai deste nó na árvore de busca em largura com raiz no nó <strong>a</strong>.</p>
+
+        <p><strong>Obs.:</strong> Um mesmo grafo pode ter várias árvores de busca em largura corretas. Isto significa que cada aluno pode obter predecessores distintos para os nós. A distância, por outro lado, é única. Ou seja, todos os alunos devem obter as mesmas distâncias.</p>
+
+        <div class="answer">
+          <h3>Resposta:</h3>
+          <p>Para realizar o teste de mesa do algoritmo BFS (Breadth-First Search), vamos seguir os passos:</p>
+          
+          <div class="pseudocode">
+            <h4>Algoritmo BFS:</h4>
+            <ol>
+              <li>Inicializar: d[a] = 0, π[a] = NIL, Q = {a}</li>
+              <li>Enquanto Q não estiver vazia:</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;u = Dequeue(Q)</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;Para cada vizinho v de u:</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Se v não foi visitado (d[v] = ∞):</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d[v] = d[u] + 1</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;π[v] = u</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enqueue(Q, v)</li>
+            </ol>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Nó</th>
+                <th>Distância (d)</th>
+                <th>Predecessor (π)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>a</td>
+                <td>0</td>
+                <td>NIL</td>
+              </tr>
+              <tr>
+                <td>b</td>
+                <td>1</td>
+                <td>a</td>
+              </tr>
+              <tr>
+                <td>c</td>
+                <td>1</td>
+                <td>a</td>
+              </tr>
+              <tr>
+                <td>d</td>
+                <td>2</td>
+                <td>b</td>
+              </tr>
+              <tr>
+                <td>e</td>
+                <td>2</td>
+                <td>c</td>
+              </tr>
+              <tr>
+                <td>f</td>
+                <td>3</td>
+                <td>d</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4>Execução passo a passo:</h4>
+          <ol>
+            <li><strong>Inicialização:</strong> d[a] = 0, π[a] = NIL, Q = [a]</li>
+            <li><strong>Iteração 1:</strong> u = a, vizinhos: b, c → d[b] = 1, π[b] = a, d[c] = 1, π[c] = a, Q = [b, c]</li>
+            <li><strong>Iteração 2:</strong> u = b, vizinhos: a, d → d[d] = 2, π[d] = b, Q = [c, d]</li>
+            <li><strong>Iteração 3:</strong> u = c, vizinhos: a, e → d[e] = 2, π[e] = c, Q = [d, e]</li>
+            <li><strong>Iteração 4:</strong> u = d, vizinhos: b, f → d[f] = 3, π[f] = d, Q = [e, f]</li>
+            <li><strong>Iteração 5:</strong> u = e, vizinhos: c (já visitado), Q = [f]</li>
+            <li><strong>Iteração 6:</strong> u = f, vizinhos: d (já visitado), Q = []</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="question">
+        <h2>Questão 2</h2>
+        <p><strong>Enunciado:</strong> Considere o grafo abaixo:</p>
+        
+        <div style="text-align: center; margin: 20px 0;">
+          <img src="g3.jpg" alt="Grafo G3" style="max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 5px;">
+        </div>
+
+        <p>Um teste de mesa consiste em executar manualmente os passos do algoritmo, anotando os estados das variáveis ao longo da execução. Realize um teste de mesa do algoritmo de busca em profundidade no grafo acima, iniciando no nó <strong>a</strong>. Forneça (i) o predecessor de cada nó, (ii) o instante <strong>d</strong> que cada nó foi descoberto, e (iii) o instante <strong>f</strong> em que o nó foi finalizado, conforme obtido através da execução do algoritmo recursivo visto em aula. O predecessor de um nó é o pai deste nó na árvore de busca em profundidade com raiz no nó <strong>a</strong>. Os nós vizinhos devem ser explorados em ordem alfabética, ou seja, todos os alunos devem obter a mesma árvore de busca em profundidade.</p>
+
+        <div class="answer">
+          <h3>Resposta:</h3>
+          <p>Para realizar o teste de mesa do algoritmo DFS (Depth-First Search), vamos seguir os passos:</p>
+          
+          <div class="pseudocode">
+            <h4>Algoritmo DFS:</h4>
+            <ol>
+              <li>Para cada vértice u ∈ V:</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;cor[u] = BRANCO</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;π[u] = NIL</li>
+              <li>tempo = 0</li>
+              <li>Para cada vértice u ∈ V:</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;Se cor[u] = BRANCO:</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DFS-VISIT(u)</li>
+            </ol>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Nó</th>
+                <th>Predecessor (π)</th>
+                <th>Tempo Descoberta (d)</th>
+                <th>Tempo Finalização (f)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>a</td>
+                <td>NIL</td>
+                <td>1</td>
+                <td>12</td>
+              </tr>
+              <tr>
+                <td>b</td>
+                <td>a</td>
+                <td>2</td>
+                <td>11</td>
+              </tr>
+              <tr>
+                <td>c</td>
+                <td>b</td>
+                <td>3</td>
+                <td>10</td>
+              </tr>
+              <tr>
+                <td>d</td>
+                <td>c</td>
+                <td>4</td>
+                <td>9</td>
+              </tr>
+              <tr>
+                <td>e</td>
+                <td>d</td>
+                <td>5</td>
+                <td>8</td>
+              </tr>
+              <tr>
+                <td>f</td>
+                <td>e</td>
+                <td>6</td>
+                <td>7</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4>Execução passo a passo:</h4>
+          <ol>
+            <li><strong>DFS-VISIT(a):</strong> d[a] = 1, explorar vizinhos em ordem alfabética: b</li>
+            <li><strong>DFS-VISIT(b):</strong> d[b] = 2, explorar vizinhos: a (já visitado), c</li>
+            <li><strong>DFS-VISIT(c):</strong> d[c] = 3, explorar vizinhos: b (já visitado), d</li>
+            <li><strong>DFS-VISIT(d):</strong> d[d] = 4, explorar vizinhos: c (já visitado), e</li>
+            <li><strong>DFS-VISIT(e):</strong> d[e] = 5, explorar vizinhos: d (já visitado), f</li>
+            <li><strong>DFS-VISIT(f):</strong> d[f] = 6, explorar vizinhos: e (já visitado)</li>
+            <li><strong>Finalização:</strong> f[f] = 7, f[e] = 8, f[d] = 9, f[c] = 10, f[b] = 11, f[a] = 12</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="question">
+        <h2>Questão 3</h2>
+        <p><strong>Enunciado:</strong> Definição: Um grafo \(G = (V, E)\) é dito bipartido se o seu conjunto de vértices \(V\) pode ser particionado em dois subconjuntos \(X\) e \(Y\) de modo que para toda aresta \((u, v)\) temos que ou \(u \in X\) e \(v \in Y\), ou \(u \in Y\) e \(v \in X\).</p>
+
+        <p>Construa um algoritmo que dado um grafo \(G\) não orientado verifica se \(G\) é bipartido ou não. Forneça a complexidade de tempo do algoritmo proposto.</p>
+
+        <div class="answer">
+          <h3>Resposta:</h3>
+          <p>Um grafo é bipartido se e somente se é 2-colorível (pode ser colorido com 2 cores sem que vértices adjacentes tenham a mesma cor). Podemos usar uma modificação do BFS para verificar isso.</p>
+
+          <div class="pseudocode">
+            <h4>Algoritmo: VerificarBipartido(G)</h4>
+            <p>Entrada: Grafo não orientado G = (V, E)</p>
+            <p>Saída: Verdadeiro se G é bipartido, Falso caso contrário</p>
+            <ol>
+              <li>Para cada vértice v ∈ V:</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;cor[v] = NÃO_COLORIDO</li>
+              <li>Para cada vértice v ∈ V:</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;Se cor[v] = NÃO_COLORIDO:</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cor[v] = AZUL</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Q = {v}</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enquanto Q não estiver vazia:</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;u = Dequeue(Q)</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Para cada vizinho w de u:</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Se cor[w] = NÃO_COLORIDO:</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cor[w] = cor oposta à cor[u]</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enqueue(Q, w)</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Senão se cor[w] = cor[u]:</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Retorne FALSO</li>
+              <li>Retorne VERDADEIRO</li>
+            </ol>
+          </div>
+
+          <div class="analysis">
+            <h4>Análise de Complexidade:</h4>
+            <p><strong>Tempo:</strong> O(|V| + |E|)</p>
+            <ul>
+              <li>Cada vértice é visitado no máximo uma vez</li>
+              <li>Cada aresta é examinada no máximo duas vezes</li>
+              <li>As operações de fila são O(1) amortizado</li>
+            </ul>
+            <p><strong>Espaço:</strong> O(|V|) para a fila e o array de cores</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="question">
+        <h2>Questão 4</h2>
+        <p><strong>Enunciado:</strong> Projete um algoritmo que determina se um grafo não orientado \(G(V, E)\) contém ciclo. O algoritmo projetado deve ter complexidade de tempo \(O(|V|)\).</p>
+
+        <div class="answer">
+          <h3>Resposta:</h3>
+          <p>Para detectar ciclos em um grafo não orientado com complexidade O(|V|), podemos usar uma modificação do DFS. Um grafo não orientado tem ciclo se e somente se durante o DFS encontramos uma aresta de retorno (back edge).</p>
+
+          <div class="pseudocode">
+            <h4>Algoritmo: DetectarCiclo(G)</h4>
+            <p>Entrada: Grafo não orientado G = (V, E)</p>
+            <p>Saída: Verdadeiro se G contém ciclo, Falso caso contrário</p>
+            <ol>
+              <li>Para cada vértice v ∈ V:</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;visitado[v] = FALSO</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;pai[v] = NIL</li>
+              <li>Para cada vértice v ∈ V:</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;Se visitado[v] = FALSO:</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Se DFS-Ciclo(v, pai[v]) = VERDADEIRO:</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Retorne VERDADEIRO</li>
+              <li>Retorne FALSO</li>
+            </ol>
+          </div>
+
+          <div class="pseudocode">
+            <h4>Função: DFS-Ciclo(v, pai_v)</h4>
+            <ol>
+              <li>visitado[v] = VERDADEIRO</li>
+              <li>Para cada vizinho u de v:</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;Se visitado[u] = FALSO:</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pai[u] = v</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Se DFS-Ciclo(u, v) = VERDADEIRO:</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Retorne VERDADEIRO</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;Senão se u ≠ pai_v:</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Retorne VERDADEIRO</li>
+              <li>Retorne FALSO</li>
+            </ol>
+          </div>
+
+          <div class="analysis">
+            <h4>Análise de Complexidade:</h4>
+            <p><strong>Tempo:</strong> O(|V|)</p>
+            <ul>
+              <li>Cada vértice é visitado no máximo uma vez</li>
+              <li>Cada aresta é examinada no máximo duas vezes</li>
+              <li>Como o grafo é não orientado, |E| ≤ |V| - 1 para grafos acíclicos</li>
+              <li>Se |E| > |V| - 1, o grafo certamente tem ciclo</li>
+            </ul>
+            <p><strong>Espaço:</strong> O(|V|) para os arrays visitado e pai</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="question">
+        <h2>Questão 5</h2>
+        <p><strong>Enunciado:</strong> Implemente uma busca em profundidade (DFS) usando uma pilha (de forma a eliminar a recursão). O seu algoritmo deverá devolver uma floresta de busca em profundidade representada por um vetor π e deve executar em tempo O(V+E). Você pode utilizar as sub-rotinas de uma pilha como caixas-pretas: CriarPilha(Q), Topo(Q), Desempilhar(Q), Empilhar(Q, v).</p>
+
+        <div class="answer">
+          <h3>Resposta:</h3>
+          <p>Vamos implementar o DFS iterativo usando uma pilha para eliminar a recursão:</p>
+
+          <div class="pseudocode">
+            <h4>Algoritmo: DFS-Iterativo(G)</h4>
+            <p>Entrada: Grafo G = (V, E)</p>
+            <p>Saída: Vetor π representando a floresta de busca em profundidade</p>
+            <ol>
+              <li>Para cada vértice v ∈ V:</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;visitado[v] = FALSO</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;π[v] = NIL</li>
+              <li>Para cada vértice v ∈ V:</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;Se visitado[v] = FALSO:</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P = CriarPilha()</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Empilhar(P, v)</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;visitado[v] = VERDADEIRO</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enquanto P não estiver vazia:</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;u = Topo(P)</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Se existe vizinho não visitado de u:</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;w = próximo vizinho não visitado de u</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Empilhar(P, w)</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;visitado[w] = VERDADEIRO</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;π[w] = u</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Senão:</li>
+              <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Desempilhar(P)</li>
+              <li>Retorne π</li>
+            </ol>
+          </div>
+
+          <div class="analysis">
+            <h4>Análise de Complexidade:</h4>
+            <p><strong>Tempo:</strong> O(|V| + |E|)</p>
+            <ul>
+              <li>Cada vértice é empilhado e desempilhado no máximo uma vez</li>
+              <li>Cada aresta é examinada no máximo duas vezes</li>
+              <li>As operações de pilha são O(1)</li>
+            </ul>
+            <p><strong>Espaço:</strong> O(|V|) para a pilha e os arrays visitado e π</p>
+          </div>
+
+          <h4>Vantagens da versão iterativa:</h4>
+          <ul>
+            <li>Evita estouro de pilha para grafos muito profundos</li>
+            <li>Mais eficiente em termos de memória</li>
+            <li>Mais fácil de otimizar</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html> 
